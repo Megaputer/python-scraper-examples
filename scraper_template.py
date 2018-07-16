@@ -61,6 +61,26 @@ def parse_arguments(description='', features=''):
     return parser.parse_args().conf
 
 
+def get_features(params, **kwargs):
+    """Returns string in PolyAnalyst's json format."""
+    return json.dumps(
+        {
+            'columns': [{'name': k, 'type': v} for k, v in kwargs.items()],
+            'params': params
+        }
+    )
+
+
+def parse_ini(ini):
+    """Returns keys from default section of ini file as a dict."""
+    parser = configparser.ConfigParser(allow_no_value=True)
+    parser.optionxform = str  # make parser case-sensitive
+    parser.read_string(ini)
+
+    return dict(parser['DEFAULT'])
+
+
+# dict of Internet Source's supported data types
 DataTypes = {
     'bool': '$bool',
     'str': '$cat_string',
@@ -69,59 +89,43 @@ DataTypes = {
 }
 
 
-def features(ini, **kwargs):
-    return json.dumps(
-        {
-            'columns': [{'name': k, 'type': v} for k, v in kwargs.items()],
-            'params': ini
-        },
-        indent=4
-    )
-
-
-def parse_ini(ini):
-    """Converts ini file string to dict."""
-    configparser.ConfigParser.optionxform = str  # make parser case insensitive
-    parser = configparser.ConfigParser(allow_no_value=True)
-    parser.read_string(ini)
-
-    return {k: v for k, v in parser['DEFAULT'].items()}
-
-
 def write(path, url, content, title, **kwargs):
-    encoded = base64.standard_b64encode(content).decode('ascii')
+    """Writes json file with PolyAnalyst's result format."""
+    data = {
+        'docs': [
+            {
+                'url': url,
+                'docurl': url,
+                'title': title,
+                'mime': 'text/html',
+                'content': base64.standard_b64encode(content).decode('ascii'),
+                'columns': kwargs,
+                'files': {},
+            }
+        ]
+    }
 
     with open(path, mode='w', encoding='utf_8') as f:
-        data = {
-            'docs': [
-                {
-                    'url': url,
-                    'docurl': url,
-                    'title': title,
-                    'mime': 'text/html',
-                    'content': encoded,
-                    'columns': kwargs,
-                    'files': {},
-                }
-            ]
-        }
-        json.dump(data, f, indent=4)
+        json.dump(data, f)
 
 
 def main(data):
     write(
-        data['output_folder'] + '\example_result.json',
-        'http://example.com',
-        'Example text content'.encode('utf_8'),
-        'Example title',
+        path=data['output_folder'] + '\example_result.json',
+        url='http://example.com',
+        content=b'Example text content',
+        title='Example title',
+        ExtraColumn=data['params']['value_for_ExtraColumn'],
     )
 
 
 if __name__ == '__main__':
-    descr = 'web scraper template'
-    file = parse_arguments(descr, features(''))
+    description = 'web scraper template'
+    ini = '[DEFAULT]\\nvalue_for_ExtraColumn=default value'
+    features = get_features(ini, ExtraColumn=DataTypes['str'])
+    file = parse_arguments(description, features)
 
-    data = json.loads(file.read())
+    data = json.load(file)
     data['params'] = parse_ini(data['params'])
 
     main(data)
