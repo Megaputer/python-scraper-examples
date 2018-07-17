@@ -113,14 +113,6 @@ API Reference
    :return: A string in PolyAnalyst's format.
    :rtype: str
 
-   :math: `A_\text{c} = (\pi/4) d^2`.
-
-.. note:: This is a note.
-   This is the second line
-
-   - The note contains
-   - It includes.
-
    Usage::
 
      >>> ini = '[DEFAULT]\nauthor='
