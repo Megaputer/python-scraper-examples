@@ -121,7 +121,7 @@ def main(data):
 
 if __name__ == '__main__':
     description = 'web scraper template'
-    ini = '[DEFAULT]\\nvalue_for_ExtraColumn=default value'
+    ini = '[DEFAULT]\nvalue_for_ExtraColumn=default value'
     features = get_features(ini, ExtraColumn=DataTypes['str'])
     file = parse_arguments(description, features)
 
