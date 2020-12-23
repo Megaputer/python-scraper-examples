@@ -24,7 +24,7 @@ pip install -r requirements.txt
    - Enter the scraper name in the `Name` field. This name will be displayed in the drop-down `Scraper` menu in the `Internet Source` node wizard
    - Enter a command in the `Command` field. For example, 
    ```commandline
-   D:\python-scraper-template\env\Scripts\python.exe D:\python-scraper-template\megaputer_blog.py
+   D:\python-scraper-examples\env\Scripts\python.exe D:\python-scraper-examples\megaputer_blog.py
    ```
    - Click `Save changes` apply the new settings
 
