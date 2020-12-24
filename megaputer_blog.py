@@ -38,6 +38,7 @@ def main():
         posts = {}
         while True:
             if node.is_cancelled():
+                logging.info('Node execution is cancelled')
                 return
 
             with s.get(url) as resp:
@@ -61,12 +62,15 @@ def main():
             try:
                 url = dom.xpath('//nav[@role="navigation"]//a[contains(@class, "next")]/@href')[0]
             except IndexError:
+                logging.info(f'Theres no more pages {url}')
                 break
 
+        logging.info(f'Found next blog posts: {posts}')
         # download collected posts
         c = 0
         for url, (author, published) in posts.items():
             if node.is_cancelled() or c >= node.rows_limit:
+                logging.info('Node execution is cancelled')
                 break
 
             try:
