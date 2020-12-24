@@ -29,8 +29,7 @@ def main():
         'Author': column_types['String'],
         'Published': column_types['Date/Time'],
     }
-    parameters = {'author': ''}
-    with InternetNode(columns, parameters, __doc__) as node, requests.Session() as s:
+    with InternetNode(__doc__, columns, {'author': ''}) as node, requests.Session() as s:
 
         author_option = node.parameters['author'].strip().lower()
 

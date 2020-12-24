@@ -10,7 +10,7 @@ from utils import column_types, InternetNode
 
 
 def main():
-    with InternetNode(columns={'Rate': column_types['Numerical']}, description=__doc__) as node:
+    with InternetNode(__doc__, columns={'Rate': column_types['Numerical']}) as node:
         node.bulk_size = 100  # insert all rates at once
 
         resp = requests.get('https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')

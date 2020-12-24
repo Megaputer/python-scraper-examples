@@ -104,9 +104,9 @@ class InternetNode:
     """
     Simple abstraction over PolyAnalyst and external scraper interactions
 
+    :param description: (optional) Scraper description and usage for end user (in markdown)
     :param columns: (optional) Define additional columns with (column_name: column_type) mapping
     :param parameters: (optional) Define parameters with (name: value) mapping
-    :param description: (optional) Scraper description and usage for end user (in markdown)
 
     Usage::
       >>> with InternetNode(description='Simplest scraper example') as node
@@ -121,7 +121,7 @@ class InternetNode:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.flush()
 
-    def __init__(self, columns=None, parameters=None, description=''):
+    def __init__(self, description='', columns=None, parameters=None):
         if columns is None:
             columns = {}
         if parameters is None:
