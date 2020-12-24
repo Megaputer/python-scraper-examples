@@ -5,8 +5,9 @@ import io
 import json
 import logging
 import math
-import uuid
 import pathlib
+import sys
+import uuid
 
 __all__ = ['column_types', 'default_datetime_format', 'InternetNode']
 
@@ -149,7 +150,7 @@ class InternetNode:
         logger.setLevel(logging.DEBUG if self.is_debug else logging.INFO)
 
         handler = logging.FileHandler(
-            self._log_dir / f'{pathlib.Path(__file__).stem}_{uuid.uuid4().hex}.log',
+            self._log_dir / f'{pathlib.Path(sys.argv[0]).stem}_{uuid.uuid4().hex}.log',
             encoding='utf-8'
         )
         handler.setFormatter(
