@@ -120,6 +120,7 @@ class InternetNode:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.flush()
+        logging.error('An unhandled error occurred in scraper:', exc_info=True)
 
     def __init__(self, description='', columns=None, parameters=None):
         if columns is None:
