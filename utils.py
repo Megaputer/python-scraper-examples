@@ -111,6 +111,9 @@ class InternetNode:
       >>> with InternetNode(description='Simplest scraper example') as node
       >>>     node.insert('https://example.com', 'Example title', 'Lorem ipsum')
     """
+
+    serializer = INI
+
     def __enter__(self):
         return self
 
@@ -125,13 +128,13 @@ class InternetNode:
 
         features = json.dumps({
             'columns': [{'name': k, 'type': v} for k, v in columns.items()],
-            'params': INI.dumps(parameters),
+            'params': self.serializer.dumps(parameters),
         })
         cfg = json.load(_parse_arguments(description, features))
 
         self.url = cfg['url']
         self.rows_limit = cfg['maximum_rows'] or math.inf
-        self.parameters = INI.loads(cfg['params'])
+        self.parameters = self.serializer.loads(cfg['params'])
         self._output_dir = pathlib.Path(cfg['output_folder'])
         self._log_dir = pathlib.Path(cfg['log_folder'])
         self.is_debug = cfg['debug_mode']
