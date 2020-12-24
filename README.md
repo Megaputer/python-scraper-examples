@@ -5,7 +5,7 @@ This repository contains examples of web scrapers used in `Internet Source` node
 ## Installation
 
 1. Install the newest version of python from https://python.org/downloads. Python 3.6+ is required.
-2. Download this repository
+2. Download this repository (here we're placed it to D drive, so full path is `D:\python-scraper-examples`. You can use any path.)
 3. Open `Command Prompt` and navigate to the repository root folder
 4. Create and activate virtual environment
 ```commandline
