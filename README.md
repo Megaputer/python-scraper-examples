@@ -10,7 +10,7 @@ This repository contains examples of web scrapers used in `Internet Source` node
 4. Create and activate virtual environment
 ```commandline
 python -m venv env
-env\Script\activate.bat
+env\Scripts\activate.bat
 ```
 5. Install scraper dependencies
 ```commandline
