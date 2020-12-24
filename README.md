@@ -1,7 +1,6 @@
 # python scraper examples
 
-This repository contains examples of web scrapers that demonstrate use cases and
-capabilities of external web scrapers.
+This repository contains examples of web scrapers used in `Internet Source` node to demonstrate their use cases and capabilities.
 
 ## Installation
 
@@ -26,12 +25,12 @@ pip install -r requirements.txt
    ```commandline
    D:\python-scraper-examples\env\Scripts\python.exe D:\python-scraper-examples\megaputer_blog.py
    ```
-   - Click `Save changes` apply the new settings
+   - Click `Save changes` to apply new settings
 
 ## Usage
 
-- Add `Internet Source` node to workspace from node palette
-- Choose registered earlier scraper from `Scrapers` drop down menu
+- Add `Internet Source` node to workspace
+- Choose one of scrapers registered earlier in `Scraper` drop down menu
 - Set parameters if selected scraper supports them
 - Execute node
 
