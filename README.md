@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ## Usage
 
 - Add `Internet Source` node to workspace
-- Choose one of scrapers registered earlier in `Scraper` drop down menu
+- Choose one of scrapers registered earlier in the drop-down `Scraper` menu
 - Set parameters if selected scraper supports them
 - Execute node
 
