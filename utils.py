@@ -198,7 +198,7 @@ class InternetNode:
         except Exception as exc:
             logging.warning(f'Failed to insert rows because of: {exc}')
         finally:
-            lockfile.unlink(missing_ok=True)
+            lockfile.unlink()
 
     def is_cancelled(self):
         """ Check that the node execution is cancelled """
