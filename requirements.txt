@@ -1,2 +1,3 @@
 lxml~=4.6
 requests~=2.25
+playwright~=1.13

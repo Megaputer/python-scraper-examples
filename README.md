@@ -4,7 +4,7 @@ This repository contains examples of web scrapers used in `Internet Source` node
 
 ## Installation
 
-1. Install the newest version of python from https://python.org/downloads. Python 3.6+ is required.
+1. Install the newest version of python from https://python.org/downloads. Python 3.7+ is required.
 2. Download this repository (here we placed it to D drive, so full path is `D:\python-scraper-examples`)
 3. Open `Command Prompt` and navigate to the repository root folder
 4. Create and activate virtual environment
@@ -16,7 +16,11 @@ env\Scripts\activate.bat
 ```commandline
 pip install -r requirements.txt
 ```
-6. Register web scrapers in `PolyAnalyst`:
+6. Download chromium browser for `webapp_scraper`:
+```commandline
+python -m playwright install chromium
+```
+7. Register web scrapers in `PolyAnalyst`:
    - Open `PolyAnalyst Administrative Tool`
    - Go to `Server setting`
    - Open `Web scrapers` context menu and click on `Add item`
