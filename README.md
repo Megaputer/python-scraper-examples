@@ -21,8 +21,7 @@ pip install -r requirements.txt
 python -m playwright install chromium
 ```
 7. Register web scrapers in `PolyAnalyst`:
-   - Open `PolyAnalyst Administrative Tool`
-   - Go to `Server setting`
+   - Navigate to [`Server setting`](https://localhost:5043/polyanalyst/static/paclient/pa6admin.html?page=18) in `PolyAnalyst Administrative Tool`
    - Open `Web scrapers` context menu and click on `Add item`
    - Enter the scraper name in the `Name` field. This name will be displayed in the drop-down `Scraper` menu in the `Internet Source` node wizard
    - Enter a command in the `Command` field. For example, 
