@@ -1,6 +1,6 @@
 # python scraper examples
 
-# Further development is going in https://github.com/Megaputer/painet. You can see examples in `examples` folder
+# Further development is going in https://github.com/Megaputer/inepta, see examples in `examples` folder
 
 This repository contains examples of web scrapers used in `Internet Source` node to demonstrate their use cases and capabilities.
 
