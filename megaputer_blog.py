@@ -1,8 +1,7 @@
 """
 ### Megaputer blog scraper
 
-Downloads articles from https://megaputer.ru/blog. Set `author` option to
-download only their articles.
+Downloads articles from https://megaputer.ru/blog
 
 #### Columns
 
@@ -11,9 +10,6 @@ download only their articles.
 | `Author`    | String    | The author of a post
 | `Published` | Date/Time | Publication date
 
-#### Parameters
-
-`author` - filter articles by author's name
 """
 import logging
 from datetime import datetime
@@ -29,9 +25,7 @@ def main():
         'Author': column_types['String'],
         'Published': column_types['Date/Time'],
     }
-    with InternetNode(__doc__, columns, {'author': ''}) as node, requests.Session() as s:
-
-        author_option = node.parameters['author'].strip().lower()
+    with InternetNode(__doc__, columns) as node, requests.Session() as s:
 
         # walk through blog pages and collect post links
         url = 'https://megaputer.ru/blog'
@@ -54,13 +48,10 @@ def main():
                 _parsed = datetime.strptime(_published, '%Y-%m-%d %H:%M:%S')
                 published = _parsed.strftime(default_datetime_format)
 
-                if author_option and author.lower() != author_option:
-                    continue
-
                 posts[link] = (author, published)
 
             try:
-                url = dom.xpath('//nav[@role="navigation"]//a[contains(@class, "next")]/@href')[0]
+                url = dom.xpath('//nav//a[contains(@class, "next")]/@href')[0]
             except IndexError:
                 logging.info(f'Theres no more pages {url}')
                 break
